@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Soundboard Perso</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Mon Soundboard</h1>
+  <button id="addSoundBtn">Add a new sound</button>
+  <div id="buttons"></div>
+
+  <!-- Modal -->
+  <div id="soundModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Ajouter un son</h2>
+      <form id="soundForm">
+        <label>Nom du son :</label>
+        <input type="text" id="soundName" required><br>
+        <label>Image :</label>
+        <input type="file" id="soundImage" accept="image/*" required><br>
+        <label>Audio :</label>
+        <input type="file" id="soundFile" accept="audio/*" required><br><br>
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
