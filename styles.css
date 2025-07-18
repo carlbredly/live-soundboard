@@ -8,20 +8,31 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
     padding: 2rem;
 }
 
-.button-sound{
-  width: 140px; height: 120px;
+.button-sound {
+  width: 140px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  border-radius: 6rem;
+  box-shadow: 0 8px 32px rgba(60,60,100,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  background: #fff;
+  position: relative;
 }
-.button-sound p{
+.button-sound:hover {
+  box-shadow: 0 16px 48px rgba(60,60,100,0.28), 0 4px 16px rgba(0,0,0,0.13);
+  transform: translateY(-4px) scale(1.05);
+  background: #f5f8ff;
+}
+.button-sound p {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #222;
+  color: #000000;
   word-break: break-word;
+  margin: 0.3rem 0 0 0;
 }
 .button-sound img { 
   max-width: 100px; 
@@ -29,9 +40,27 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
   border-radius: 50%;
 }
 .button-sound.playing {
-  background-color: #00000045;
-  border-radius: 15px;
-  padding:0rem 1rem;
+  /* Ne change rien au style visuel principal */
+  /* Si tu veux un effet discret, tu peux ajouter par exemple un contour léger : */
+  outline: 2px solid #4f8cff33;
+  outline-offset: 2px;
+  /* Pas de changement de background, box-shadow ou border-radius */
+}
+
+.button-sound button {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #444;
+  border: none;
+  font-size: 1.1rem;
+  margin-top: 0.3rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.button-sound button:hover {
+  background: #eee;
+  color: #d32f2f;
 }
 
 
