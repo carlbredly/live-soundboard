@@ -115,9 +115,15 @@ function getColorForName(name) {
 
 function createSoundButton(name, imgSrc, audioSrc, id, hasImage) {
   const audio = new Audio(audioSrc);
+  const wrapper = document.createElement('div');
+  wrapper.style.display = 'flex';
+  wrapper.style.flexDirection = 'column';
+  wrapper.style.alignItems = 'center';
+  wrapper.style.margin = '0 10px 20px 10px';
+
   const btn = document.createElement('div');
   btn.className = 'button-sound';
-  btn.tabIndex = 0; // accessibilité clavier
+  btn.tabIndex = 0;
   if (!hasImage) {
     btn.style.background = getColorForName(name);
     btn.style.display = 'flex';
@@ -126,9 +132,9 @@ function createSoundButton(name, imgSrc, audioSrc, id, hasImage) {
     btn.style.justifyContent = 'center';
   }
   if (hasImage) {
-    btn.innerHTML = `<img src="${imgSrc}" alt="${name}">\n                    <p>${name}</p>`;
+    btn.innerHTML = `<img src="${imgSrc}" alt="${name}">`;
   } else {
-    btn.innerHTML = `<div style='width:80px;height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#fff;user-select:none;'>♪</div><p>${name}</p>`;
+    btn.innerHTML = `<div style='width:80px;height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#fff;user-select:none;'>♪</div>`;
   }
   // Suppression par clic droit avec vibration visuelle
   btn.oncontextmenu = async (e) => {
@@ -137,7 +143,7 @@ function createSoundButton(name, imgSrc, audioSrc, id, hasImage) {
     setTimeout(() => btn.classList.remove('vibrate'), 180);
     if (confirm('Supprimer ce son ?')) {
       await deleteSoundFromDB(id);
-      btn.remove();
+      wrapper.remove();
     }
   };
   btn.onclick = () => {
@@ -152,7 +158,13 @@ function createSoundButton(name, imgSrc, audioSrc, id, hasImage) {
       audio.onended = () => btn.classList.remove('playing');
     }
   };
-  buttonsDiv.appendChild(btn);
+  // Nom sous le cercle
+  const nameP = document.createElement('p');
+  nameP.className = 'sound-name';
+  nameP.textContent = name;
+  wrapper.appendChild(btn);
+  wrapper.appendChild(nameP);
+  buttonsDiv.appendChild(wrapper);
 }
 
 // --- Initialisation et chargement ---
