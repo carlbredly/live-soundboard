@@ -9,30 +9,61 @@ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
 }
 
 .button-sound {
-  width: 140px;
+  width: 120px;
   height: 120px;
+  min-width: 120px;
+  min-height: 120px;
+  max-width: 120px;
+  max-height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-  border-radius: 6rem;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s, outline 0.2s;
+  border-radius: 50%;
   box-shadow: 0 8px 32px rgba(60,60,100,0.18), 0 2px 8px rgba(0,0,0,0.10);
   background: #fff;
   position: relative;
+  outline: none;
+  overflow: hidden;
+}
+.button-sound:focus {
+  outline: 2.5px solid #4f8cff;
+  outline-offset: 2px;
 }
 .button-sound:hover {
   box-shadow: 0 16px 48px rgba(60,60,100,0.28), 0 4px 16px rgba(0,0,0,0.13);
   transform: translateY(-4px) scale(1.05);
   background: #f5f8ff;
+  filter: brightness(1.04) drop-shadow(0 0 8px #4f8cff22);
+}
+.button-sound.vibrate {
+  animation: vibrate 0.18s linear 1;
+}
+@keyframes vibrate {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
 }
 .button-sound p {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #000000;
+  color: #222;
   word-break: break-word;
   margin: 0.3rem 0 0 0;
+  text-align: center;
+  text-shadow: 0 2px 8px #fff, 0 1px 2px #0002;
+  background: rgba(255,255,255,0.7);
+  border-radius: 0.7rem;
+  padding: 0.1rem 0.5rem;
+  max-width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .button-sound img { 
   max-width: 100px; 

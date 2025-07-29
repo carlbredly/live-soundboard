@@ -1,4 +1,3 @@
-# live-soundboard
 # Soundboard Perso
 
 Ce projet est une application web de soundboard personnalisable, développée en HTML, CSS et JavaScript. Il permet à chaque utilisateur d'ajouter ses propres sons avec une image et un nom, et de les jouer directement depuis le navigateur.

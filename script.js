@@ -117,6 +117,7 @@ function createSoundButton(name, imgSrc, audioSrc, id, hasImage) {
   const audio = new Audio(audioSrc);
   const btn = document.createElement('div');
   btn.className = 'button-sound';
+  btn.tabIndex = 0; // accessibilité clavier
   if (!hasImage) {
     btn.style.background = getColorForName(name);
     btn.style.display = 'flex';
@@ -129,17 +130,16 @@ function createSoundButton(name, imgSrc, audioSrc, id, hasImage) {
   } else {
     btn.innerHTML = `<div style='width:80px;height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#fff;user-select:none;'>♪</div><p>${name}</p>`;
   }
-  // Suppression
-  const delBtn = document.createElement('button');
-  delBtn.textContent = '🗑️';
-  delBtn.title = 'Supprimer';
-  delBtn.style.marginTop = '0.5rem';
-  delBtn.onclick = async (e) => {
-    e.stopPropagation();
-    await deleteSoundFromDB(id);
-    btn.remove();
+  // Suppression par clic droit avec vibration visuelle
+  btn.oncontextmenu = async (e) => {
+    e.preventDefault();
+    btn.classList.add('vibrate');
+    setTimeout(() => btn.classList.remove('vibrate'), 180);
+    if (confirm('Supprimer ce son ?')) {
+      await deleteSoundFromDB(id);
+      btn.remove();
+    }
   };
-  btn.appendChild(delBtn);
   btn.onclick = () => {
     if (!audio.paused && !audio.ended) {
       audio.pause();
